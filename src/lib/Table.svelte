@@ -5,35 +5,35 @@
     const data = writable([
         {
             nr: "1",
-            name: "Johannes",
+            name: "Samson",
             age: "34",
             city: "Amsterdam",
             speciality: "Cleaning dishes",
-            active: "No"
+            active: false
         },
         {
             nr: "2",
-            name: "Alexander",
+            name: "John",
             age: "82",
             city: "Groenlo",
             speciality: "Energy",
-            active: "Yes"
+            active: true
         },
         {
             nr: "3",
-            name: "Stekelenburg",
+            name: "Emma",
             age: "12",
             city: "Den Haag",
             speciality: "Pixelator",
-            active: "Yes"
+            active: true
         },
         {
             nr: "4",
-            name: "Huiskes",
+            name: "Karly",
             age: "77",
             city: "Utrecht",
             speciality: "Precision",
-            active: "No"
+            active: false
         },
         {
             nr: "5",
@@ -41,7 +41,7 @@
             age: "75",
             city: "Den Helder",
             speciality: "Consumption",
-            active: "No"
+            active: false
         },
         {
             nr: "6",
@@ -49,7 +49,7 @@
             age: "56",
             city: "Breda",
             speciality: "Eyesight",
-            active: "Yes"
+            active: true
         }
     ]);
 
@@ -96,7 +96,7 @@
                 draggable={true}
             >
                 <td>
-                    <button class="drag">
+                    <button class="drag-icon">
                         <Icon src={Menu} class="w-5 h-5" solid />
                     </button>
                 </td>
@@ -105,18 +105,25 @@
                 <td>{item.age}</td>
                 <td>{item.city}</td>
                 <td>{item.speciality}</td>
-                <td>{item.active}</td>
+                <td>
+                    {#if item.active}
+                        <div class="w-2 h-2 block rounded-full bg-green-400 mx-auto"></div>
+                        {:else}
+                        <div class="w-2 h-2 block rounded-full bg-red-400 mx-auto"></div>
+                    {/if}
+                </td>
             </tr>
         {/each}
     </tbody>
 </table>
 
 <style>
+    
     thead {
-        @apply text-left;
+        @apply text-left border border-slate-700 border-b-0;
     }
     th {
-        @apply bg-slate-700 py-4 px-8;
+        @apply bg-slate-700 py-4 px-8 text-sm;
     }
     td {
         @apply py-2.5 px-8 font-light;
@@ -125,15 +132,15 @@
         @apply border-slate-700 border-y;
     }
     .dragged {
-        @apply bg-slate-900 opacity-10 relative z-10 border-y-2 border-dashed;
+        @apply bg-slate-900 relative z-10 border-y-2 border-dashed;
     }
     .target {
-        @apply bg-slate-500;
+        @apply bg-slate-600;
     }
     tr td:first-child {
         @apply pr-0;
     }
-    .drag {
-        @apply cursor-move translate-y-1;
+    .drag-icon {
+        @apply cursor-move translate-y-1 text-slate-600;
     }
 </style>
